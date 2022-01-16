@@ -1,4 +1,4 @@
-# Custom Layout
+![banner](customLayout_banner.png)
 
 [![Version](https://img.shields.io/cocoapods/v/CustomLayout.svg?style=flat)](https://cocoapods.org/pods/CustomLayout)
 [![License](https://img.shields.io/cocoapods/l/CustomLayout.svg?style=flat)](https://cocoapods.org/pods/CustomLayout)
