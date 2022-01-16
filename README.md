@@ -34,7 +34,9 @@ $ pod install
 #### Swift Package Manager
 
 [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
-> Xcode 11+ is required to build SnapKit using Swift Package Manager.
+
+> Xcode 11+ is required to build CustomLayout using Swift Package Manager.
+
 ```Swift
 dependencies: [
     .package(url: "https://github.com/MnkGitBox/CustomLayout.git", .upToNextMajor(from: "1.0.1"))
