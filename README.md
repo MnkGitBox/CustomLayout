@@ -70,7 +70,7 @@ NSLayoutConstraint.activate([redView.leadingAnchor.constraint(equalTo: view.lead
 ```Swift
 view.addSubview(redView)
 
-redView.activateLayouts([.leading(constant: 50), .traling(constant: -50), .top(constant: 40, safeAreaAlign: true), .bottom(constant: -20, safeAreaAlign: true)])
+redView.layout.activate([.leading(constant: 50), .traling(constant: -50), .top(constant: 40, safeAreaAlign: true), .bottom(constant: -20, safeAreaAlign: true)])
 ```
 
 #### Layout to sibling views
