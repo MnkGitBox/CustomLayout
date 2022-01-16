@@ -76,7 +76,7 @@ redView.activateLayouts([.leading(constant: 50), .traling(constant: -50), .top(c
 #### Layout to sibling views
 Custom Layout not only helps to layout subviews to its super view. We can use it to layout view components with other views who share the same ancestors.
 ```Swift
-        greenView.layout.activate(to: [view : [.bottom(constant: -2, safeAreaAlign: true), .traling(constant: -20)],
+greenView.layout.activate(to: [view : [.bottom(constant: -2, safeAreaAlign: true), .traling(constant: -20)],
                                     redView : [.leadingToTraling(constant: -10), .topToBottom(constant: 20)]])
 ```
 
