@@ -82,7 +82,7 @@ greenView.layout.activate(to: [view : [.bottom(constant: -2, safeAreaAlign: true
 
 ### Resources
 
-You can find the original sample code [here](../../Example/MNkSupportUtilities/CustomLayout_comp.swift).
+You can find the original sample code [here](SampleCode.swift).
 
 ## Credits
 - Malith Nadeeshan ([malithnadeeshan](https://twitter.com/malithnadeeshan))
