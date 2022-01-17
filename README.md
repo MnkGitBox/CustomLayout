@@ -7,7 +7,7 @@
 Auto Layout made easy with the Custom Layout.
 <br>
 
-## Getting started
+## Installation
 
 #### CocoaPods
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -49,7 +49,7 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ---
 
-### How to Use
+### Usage
 You can call `layout.activate` method provided by the **Custom Layout** library.
 
  -  Without Custom Layout
