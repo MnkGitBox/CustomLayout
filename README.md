@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CustomLayout.svg?style=flat)](https://cocoapods.org/pods/CustomLayout)
 [![License](https://img.shields.io/cocoapods/l/CustomLayout.svg?style=flat)](https://cocoapods.org/pods/CustomLayout)
 [![Platform](https://img.shields.io/cocoapods/p/CustomLayout.svg?style=flat)](https://cocoapods.org/pods/CustomLayout)
+![SPM](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-orange)
 
 Auto Layout made easy with the Custom Layout.
 <br>
