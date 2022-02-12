@@ -8,32 +8,32 @@
 import UIKit
 
 public enum CustomLayoutConstraint: Hashable {
-    case top(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case leading(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case traling(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case bottom(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case centerX(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case centerY(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case height(constant: CGFloat = 0)
-    case width(constant: CGFloat = 0)
+    case top(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0,  safeAreaAlign: Bool = false)
+    case leading(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case traling(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case bottom(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case centerX(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case centerY(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case height(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0)
+    case width(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0)
     
-    case topToBottom(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case topToCenterY(constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case topToBottom(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case topToCenterY(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
     
-    case bottomToTop(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case bottomToCenterY(constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case bottomToTop(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case bottomToCenterY(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
     
-    case leadingToTraling(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case leadingToCenterX(constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case leadingToTraling(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case leadingToCenterX(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
     
-    case tralingToLeading(constant: CGFloat = 0, safeAreaAlign: Bool = false)
-    case tralingToCenterX(constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case tralingToLeading(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
+    case tralingToCenterX(relation: ConstraintRelationType = .equalTo, constant: CGFloat = 0, safeAreaAlign: Bool = false)
     
-    case equalHeight(multiplier: CGFloat = 1, constant: CGFloat = 0)
-    case equalWidth(multiplier: CGFloat = 1, constant: CGFloat = 0)
+    case equalHeight(relation: ConstraintRelationType = .equalTo, multiplier: CGFloat = 1, constant: CGFloat = 0)
+    case equalWidth(relation: ConstraintRelationType = .equalTo, multiplier: CGFloat = 1, constant: CGFloat = 0)
     
-    case equalHeightToWidth(mutiplier: CGFloat, constant: CGFloat)
-    case equalWidthToHeight(mutiplier: CGFloat, constant: CGFloat)
+    case equalHeightToWidth(relation: ConstraintRelationType = .equalTo, mutiplier: CGFloat, constant: CGFloat)
+    case equalWidthToHeight(relation: ConstraintRelationType = .equalTo, mutiplier: CGFloat, constant: CGFloat)
     
     //Identify the layout key uniquily
     var layoutId: Int {
@@ -85,4 +85,11 @@ public enum CustomLayoutConstraint: Hashable {
     public static func == (lhs: CustomLayoutConstraint, rhs: CustomLayoutConstraint) -> Bool {
         return lhs.layoutId == rhs.layoutId
     }
+}
+
+
+@objc public enum ConstraintRelationType: Int {
+    case equalTo
+    case greaterThanOrEqualTo
+    case lessThanOrEqualTo
 }

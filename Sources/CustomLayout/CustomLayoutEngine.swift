@@ -18,7 +18,7 @@ struct CustomLayoutEngine: CustomLayout {
     //MARK: - ACTIVE LAYOUT TO PARENT
     
     func activate(equalConstant constant: CGFloat, to secondView: UIView?, layoutToSafeArea isSafeAreaActivate: Bool ) {
-        activate(to: secondView, [.leading(constant: constant), .traling(constant: constant), .traling(constant: constant), .bottom(constant: constant)], layoutToSafeArea: isSafeAreaActivate)
+        activate(to: secondView, [.leading(constant: constant), .traling(constant: constant), .top(constant: constant), .bottom(constant: constant)], layoutToSafeArea: isSafeAreaActivate)
     }
     
     func activate(to secondView: UIView?,_ layouts: [CustomLayoutConstraint], layoutToSafeArea isSafeAreaActivate: Bool) {
@@ -38,60 +38,57 @@ struct CustomLayoutEngine: CustomLayout {
     func activate(to secondView: UIView, _ layoutKey: CustomLayoutConstraint, layoutToSafeArea isSafeAreaActivate: Bool) {
 
         switch layoutKey {
-        case let .traling(constant, safeAreaAlign), let .leading(constant, safeAreaAlign), let .centerX(constant, safeAreaAlign):
+        case let .traling(r, c, safeAreaAlign), let .leading(r, c, safeAreaAlign), let .centerX(r, c, safeAreaAlign):
             firstView.anchorX(for: layoutKey, (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorX(for: layoutKey, (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to:  secondView.anchorX(for: layoutKey, (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .top(constant, safeAreaAlign), let .bottom(constant, safeAreaAlign), let .centerY(constant, safeAreaAlign):
+        case let .top(r, c, safeAreaAlign), let .bottom(r, c, safeAreaAlign), let .centerY(r, c, safeAreaAlign):
             firstView.anchorY(for: layoutKey, (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorY(for: layoutKey, (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorY(for: layoutKey, (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-            
-        case let .topToBottom(constant, safeAreaAlign):
+        case let .topToBottom(r, c, safeAreaAlign):
             firstView.anchorY(for: .top(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorY(for: .bottom(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorY(for: .bottom(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .bottomToTop(constant, safeAreaAlign):
+        case let .bottomToTop(r, c, safeAreaAlign):
             firstView.anchorY(for: .bottom(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorY(for: .top(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to:  secondView.anchorY(for: .top(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .topToCenterY(constant, safeAreaAlign):
+        case let .topToCenterY(r, c, safeAreaAlign):
             firstView.anchorY(for: .top(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorY(for: .centerY(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorY(for: .centerY(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .bottomToCenterY(constant, safeAreaAlign):
+        case let .bottomToCenterY(r, c, safeAreaAlign):
             firstView.anchorY(for: .bottom(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorY(for: .centerY(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorY(for: .centerY(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        
-        case let .leadingToTraling(constant, safeAreaAlign):
+        case let .leadingToTraling(r, c, safeAreaAlign):
             firstView.anchorX(for: .leading(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorX(for: .traling(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorX(for: .traling(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .leadingToCenterX(constant, safeAreaAlign):
+        case let .leadingToCenterX(r, c, safeAreaAlign):
             firstView.anchorX(for: .leading(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorX(for: .centerX(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorX(for: .centerX(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .tralingToLeading(constant, safeAreaAlign):
+        case let .tralingToLeading(r, c, safeAreaAlign):
             firstView.anchorX(for: .traling(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorX(for: .leading(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to: secondView.anchorX(for: .leading(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
-        case let .tralingToCenterX(constant, safeAreaAlign):
+        case let .tralingToCenterX(r, c, safeAreaAlign):
             firstView.anchorX(for: .traling(), (isSafeAreaActivate || safeAreaAlign))
-                .constraint(equalTo: secondView.anchorX(for: .centerX(), (isSafeAreaActivate || safeAreaAlign)), constant: constant).isActive = true
+                .constraint(relation: r, to:  secondView.anchorX(for: .centerX(), (isSafeAreaActivate || safeAreaAlign)), constant: c).isActive = true
             
+        case let .equalWidth(r, m, c):
+            firstView.widthAnchor.constraint(relation: r, to: secondView.widthAnchor, multiplier: m, constant: c).isActive = true
             
-        case let .equalWidth(mutiplier, constant):
-            firstView.widthAnchor.constraint(equalTo: secondView.widthAnchor, multiplier: mutiplier, constant: constant).isActive = true
+        case let .equalHeight(r, m, c):
+            firstView.heightAnchor.constraint(relation: r, to: secondView.heightAnchor, multiplier: m, constant: c).isActive = true
             
-        case let .equalHeight(mutiplier, constant):
-            firstView.heightAnchor.constraint(equalTo: secondView.heightAnchor, multiplier: mutiplier, constant: constant).isActive = true
+        case let .equalWidthToHeight(r, m, c):
+            firstView.widthAnchor.constraint(relation: r, to: secondView.heightAnchor, multiplier: m, constant: c).isActive = true
             
-        case let .equalWidthToHeight(mutiplier, constant):
-            firstView.widthAnchor.constraint(equalTo: secondView.heightAnchor, multiplier: mutiplier, constant: constant).isActive = true
-            
-        case let .equalHeightToWidth(mutiplier, constant):
-            firstView.heightAnchor.constraint(equalTo: secondView.widthAnchor, multiplier: mutiplier, constant: constant).isActive = true
+        case let .equalHeightToWidth(r, m, c):
+            firstView.heightAnchor.constraint(relation: r, to: secondView.widthAnchor, multiplier: m, constant: c).isActive = true
 
         default:
             fatalError("Incorrent layout method for key")
@@ -126,11 +123,11 @@ struct CustomLayoutEngine: CustomLayout {
     //Activate Dimesion realative layout
     private func activate(_ layout: CustomLayoutConstraint) {
         switch layout {
-        case let .height(constant):
-            firstView.heightAnchor.constraint(equalToConstant: constant).isActive = true
+        case let .height(r, c):
+            firstView.heightAnchor.constant(relation: r, constant: c).isActive = true
             
-        case let .width(constant):
-            firstView.widthAnchor.constraint(equalToConstant: constant).isActive = true
+        case let .width(r, c):
+            firstView.widthAnchor.constant(relation: r, constant: c).isActive = true
             
         default:
             fatalError("Incorrent layout method for key")
@@ -191,6 +188,43 @@ extension UIView {
         
         default:
             fatalError("Not Related to NSLayoutXAxisAnchor")
+        }
+    }
+}
+
+extension NSLayoutAnchor {
+    @objc func constraint(relation r: ConstraintRelationType, to anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint {
+        switch r {
+        case .equalTo:
+            return constraint(equalTo: anchor, constant: c)
+        case .greaterThanOrEqualTo:
+            return constraint(greaterThanOrEqualTo: anchor, constant: c)
+        case .lessThanOrEqualTo:
+            return constraint(lessThanOrEqualTo: anchor, constant: c)
+        }
+    }
+}
+
+extension NSLayoutDimension {
+    @objc func constraint(relation r: ConstraintRelationType, to dimension: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint {
+        switch r {
+        case .equalTo:
+            return constraint(equalTo: dimension, multiplier: m, constant: c)
+        case .greaterThanOrEqualTo:
+            return constraint(greaterThanOrEqualTo: dimension, multiplier: m, constant: c)
+        case .lessThanOrEqualTo:
+            return constraint(lessThanOrEqualTo: dimension, multiplier: m, constant: c)
+        }
+    }
+    
+    @objc func constant(relation r: ConstraintRelationType, constant c: CGFloat) -> NSLayoutConstraint {
+        switch r {
+        case .equalTo:
+            return constraint(equalToConstant: c)
+        case .greaterThanOrEqualTo:
+            return constraint(greaterThanOrEqualToConstant: c)
+        case .lessThanOrEqualTo:
+            return constraint(lessThanOrEqualToConstant: c)
         }
     }
 }
